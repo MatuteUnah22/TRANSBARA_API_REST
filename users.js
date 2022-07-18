@@ -40,83 +40,97 @@ app.use(bp.urlencoded({extended: true}));
 
 // Obtener todos los usuarios
 app.get("/usuarios", (req, res) => {
-    const consulta = 'call TRANSBARA.SELECT_TODOS_USUARIO';
-    conn.query(consulta, (error, results) => {
-        if (error) throw error;
-        if (results.length > 0) {
-            res.json(results);
-        } else {
-            res.send("No pudo traer ningún dato de la BD");
-        }    
+    try {
+        const consulta = 'call TRANSBARA.SELECT_TODOS_USUARIO';
+        conn.query(consulta, (error, results) => {
+            if (error) throw error;
+            if (results.length > 0) {
+                res.json(results);
+            } else {
+                res.send("No pudo traer ningún dato de la BD");
+            }
+        });
         
-    });
+    } catch (error) {
+        console.log(error);
+    }
 
 });
 
-// Obtener un usuario con un parametro en específico
+// INSERTAR UN USUARIO CON EL MÉTODO "POST"
+app.post("/insertar_usuario/", (req, res) => {
+    try{
+        const { usr_cod_usuario, usr_password, usr_nom_usuario, usr_cod_estatus, usr_loguead, usr_cod_tipo_usuario, usr_usr_adicion, usr_usr_modificacion } = req.params;
+        console.log(req.body);
+        const consulta = 'call TRANSBARA.INSERT_USUARIO(?,?,?,?,?,?,?,?);';
+        conn.query(consulta,[usr_cod_usuario, usr_password, usr_nom_usuario, usr_cod_estatus, usr_loguead, usr_cod_tipo_usuario, usr_usr_adicion, usr_usr_modificacion], (err,rows,fields) => {
+            if (!err){
+                res.json({Status: 'USUARIO AGREGADO...'});
+            } else {
+                console.log("No pudo insertar ningún usuario");
+            }
+        });
+    }catch (error) {
+        console.log(error);
+    }
+
+});
+
+// OBTENER UN USUARIO CON UN PARAMETRO EN ESPECÍFICO CON EL MÉTODO "GET"
 app.get("/usuario/:PI_usr_cod_usuario", (req, res) => {
-    const {PI_usr_cod_usuario} = req.params;
-    const consulta = 'call TRANSBARA.SELECT_USUARIO(?)';
-    conn.query(consulta, [PI_usr_cod_usuario], (error, results) => {
-        if (error) throw error;
-        if (results.length > 0) {
-            res.json(results);
-        } else {
-            res.send("No pudo traer ningún dato de la BD");
-        }
-    });
+    try {
+        
+        const {PI_usr_cod_usuario} = req.params;
+        const consulta = 'call TRANSBARA.SELECT_USUARIO(?)';
+        conn.query(consulta, [PI_usr_cod_usuario], (error, results) => {
+            if (error) throw error;
+            if (results.length > 0) {
+                res.json(results);
+            } else {
+                res.send("No pudo traer ningún dato de la BD");
+            }
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    
  
 });
 
-// INSERTAR UN USUARIO CON EL MÉTODO POST
-app.post("/post_usuario", (req, res) => {
-    //const consulta = 'call TRANSBARA.SELECT_USUARIO';
-    //const consulta = 'select * from pe_usuarios';
-    const { usr_cod_usuario, usr_password, usr_nom_usuario, usr_cod_empleado, usr_cod_estatus, usr_loguead, usr_cod_tipo_usuario, usr_fec_adicion, usr_usr_adicion, usr_fec_modificacion, usr_usr_modificacion, usr_fec_ult_conex } = req.body;
-    const consulta = `call TRANSBARA.INSERT_USUARIO( ${PI_usr_cod_usuario},${PV_usr_password},${PV_usr_nom_usuario},${PI_usr_cod_empleado},${PI_usr_cod_estatus},${PV_usr_loguead},${PI_usr_cod_tipo_usuario},${now()},${PV_usr_usr_adicion},${now()},${PV_usr_usr_modificacion},${now()});`;
-    conn.query(consulta, (error, results) => {        
-        if (error) throw error;
-        if (results.length > 0) {
-            res.json(results);
-        } else {
-            res.send("No pudo traer ningún dato de la BD");
-        }    
-        
-    });
+// ACTUALIZAR USUARIO CON EL MÉTODO "PUT"
+app.put("/actualizar_usuario/:usr_cod_usuario", (req, res) => {
+   
+    try{
+        const {usr_password, usr_nom_usuario, usr_cod_empleado,usr_cod_estatus,usr_loguead,usr_cod_tipo_usuario,usr_usr_adicion,usr_usr_modificacion } = req.body;
+        const {usr_cod_usuario} = req.params;
+        const query  = 'call TRANSBARA.UPDATE_USUARIO(?,?,?,?,?,?,?,?,?)';
+        conn.query(query, [usr_cod_usuario,usr_password, usr_nom_usuario, usr_cod_empleado,usr_cod_estatus,usr_loguead,usr_cod_tipo_usuario,usr_usr_adicion,usr_usr_modificacion], (err, rows, fields) => {
+            if (!err){
+                res.json({Status: 'USUARIO ACTUALIZADO...'});
+            } else {
+                console.log("NO SE ENCONTRÓ NINGÚN DATO.");
+            }
+        });
+    }catch (error) {
+        console.log(error);
+    }
 
 });
 
 // ELIMINAR USUARIO CON EL MÉTODO DELETE
-app.get("/eliminarunusuario/:PV_usr_cod_usuario", (req, res) => {
-    const {PV_usr_cod_usuario} = req.params;
-    const consulta = 'call TRANSBARA.DELETE_USUARIO(?)';
-    conn.query(consulta, [PV_usr_cod_usuario], (error, results) => {
-        if (error) throw error;
-        res.send("Usuario eliminado...");
-         /*if (results.length > 0) {
-            res.json(results);
-            //console.log(results[0][0].pe_usuarios);
-            console.log("Usuario eliminado...");
-        } else {
-            res.send("No pudo eliminar ningún dato de la BD");
-        }*/
-    });
- 
-});
+app.get("/eliminar_usuario/:PV_usr_cod_usuario", (req, res) => {
+    try {
+        const {PV_usr_cod_usuario} = req.params;
+        const consulta = 'call TRANSBARA.DELETE_USUARIO(?)';
+        conn.query(consulta, [PV_usr_cod_usuario], (error, results) => {
+            if (error) throw error;
+            res.send({Status: 'USUARIO ELIMINADO...'});
+        });
+    
+    } catch (error) {
+        console.log(error);
+    }
 
-// Método para actualizar un usuario
-app.get("/usuarioUpdate/:PI_usr_cod_usuario", (req, res) => {
-    const {PI_usr_cod_usuario} = req.params;
-    const consulta = 'call TRANSBARA.UPDATE_USUARIO(?);';
-    conn.query(consulta, [PI_usr_cod_usuario], (error, results) => {
-        if (error) {//throw error;
-            // if (results.length > 0) {
-            res.json(results);
-        } else {
-            res.send("No pudo traer ningún dato de la BD");
-        }
-    });
- 
 });
 
 module.exports = app;

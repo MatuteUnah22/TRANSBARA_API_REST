@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const conexion = require("mysql");
 require('dotenv').config();
-const routes = require('./routers/empleados')
+const routes = require('./routes/empleados')
 
 
 // constante para el paquete bodyparser
@@ -32,6 +32,7 @@ conn.connect((err)=>{
 // MIDDLEWARES
 app.use(bp.json());
 app.use(bp.urlencoded({extended: true}));
+app.use(express.json());
 
 // ROUTES
 app.get('/', (req, res) => {

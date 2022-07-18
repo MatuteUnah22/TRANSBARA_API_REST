@@ -1,0 +1,68 @@
+###
+GET http://localhost:3000/empleados HTTP/1.1
+
+###
+POST http://localhost:3000/empleados/insertar_empleado/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "emp_nom_empleado": "David Matute",
+    "emp_id_empleado": "22640",
+    "emp_email_empleado": "davidmatute@unah.hn",
+    "emp_estado_civil": "s",
+    "emp_cod_estatus": "1",
+    "emp_cod_cargo": "1",
+    "emp_tipo_contrato": "1",
+    "emp_usr_adicion": "Angela",
+    "emp_usr_modificacion": "Sayra",
+    "des_cargo": "Chofer",
+    "estatus": "sss",
+    "des_tipo_contrato": "Medio tiempo"
+    
+}
+
+###
+PUT http://localhost:3000/empleados/actualizar_empleado/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    
+    "emp_nom_empleado": "David Matute",
+    "emp_id_empleado": "22640",
+    "emp_email_empleado": "davidmatute@unah.hn",
+    "emp_estado_civil": "s",
+    "emp_cod_estatus": "1",
+    "emp_cod_cargo": "1",
+    "emp_tipo_contrato": "1",
+    "emp_usr_adicion": "Angela",
+    "emp_usr_modificacion": "Sayra",
+    "des_cargo": "Chofer",
+    "estatus": "sss",
+    "des_tipo_contrato": "Medio tiempo"
+    
+}
+
+###
+DELETE http://localhost:3000/empleados/eliminar_empleado/2 HTTP/1.1
+
+// ------------------------------------------------------------------
+###
+GET http://localhost:3000/usuarios HTTP/1.1
+
+###
+GET http://localhost:3000/usuario/11 HTTP/1.1
+
+###
+PUT http://localhost:3000/actualizar_usuario/11 HTTP/1.1
+header name: header value
+
+{
+    "usr_password": "hola",
+    "usr_nom_usuario": "DavidMatute",
+    "usr_cod_empleado": 2,
+    "usr_cod_estatus": 2,
+    "usr_loguead": "s",
+    "usr_cod_tipo_usuario": 1,
+    "usr_usr_adicion": "sss",
+    "usr_usr_modificacion": "BBB"
+}
