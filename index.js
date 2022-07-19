@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const conexion = require("mysql");
 require('dotenv').config();
-const routes = require('./routes/empleados')
+const routes = require('./routes/empleados');
+const routes_p = require('./routes/proveedores');
 
 
 // constante para el paquete bodyparser
@@ -40,7 +41,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/empleados', routes);
-
+app.use('/proveedores', routes_p);
 
 
 //EJECUTAMOS EL SERVER EN UN PUERTO ESPECFICO; PUERTO 3000 (ELSERVICIO NODEJS)

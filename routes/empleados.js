@@ -42,7 +42,7 @@ routes.post("/insertar_empleado/", (req, res) => {
         const { emp_nom_empleado, emp_id_empleado, emp_email_empleado, emp_estado_civil, emp_cod_estatus, emp_cod_cargo, emp_tipo_contrato, emp_usr_adicion, emp_usr_modificacion, des_cargo, estatus, des_tipo_contrato } = req.params;
         console.log(req.body);
         const consulta = 'call TRANSBARA.INSERT_EMPLEADO(?,?,?,?,?,?,?,?,?,?,?,?);';
-        conn.query(consulta,[emp_nom_empleado, emp_id_empleado, emp_email_empleado, emp_estado_civil, emp_cod_estatus, emp_cod_cargo, emp_tipo_contrato, emp_usr_adicion, emp_usr_modificacion, des_cargo, estatus, des_tipo_contrato], (err,rows,fields) => {
+        conn.query(consulta, [emp_nom_empleado, emp_id_empleado, emp_email_empleado, emp_estado_civil, emp_cod_estatus, emp_cod_cargo, emp_tipo_contrato, emp_usr_adicion, emp_usr_modificacion, des_cargo, estatus, des_tipo_contrato], (err,rows,fields) => {
             if (!err){
                 res.json({Status: 'COLABORADOR AGREGADO...'});
             } else {
@@ -70,14 +70,14 @@ routes.get("/obtener_empleado/:PI_emp_cod_empleado", (req, res) => {
 
 });
 
-// ACTUALIZAR USUARIO CON EL MÉTODO "PUT"
+// ACTUALIZAR EMPLEADO CON EL MÉTODO "PUT"
 routes.put("/actualizar_empleado/:emp_cod_empleado", (req, res) => {
    
     try{
-        const {emp_nom_empleado, emp_id_empleado, emp_email_empleado, emp_estado_civil, emp_cod_estatus, emp_cod_cargo, emp_tipo_contrato, emp_usr_adicion, emp_usr_modificacion, des_cargo, estatus, des_tipo_contrato } = req.body;
+        const {emp_nom_empleado, emp_id_empleado, emp_email_empleado, emp_estado_civil, emp_cod_estatus, emp_cod_cargo, emp_tipo_contrato, emp_usr_adicion, emp_usr_modificacion } = req.body;
         const {emp_cod_empleado} = req.params;
-        const consulta  = 'call TRANSBARA.UPDATE_USUARIO(?,?,?,?,?,?,?,?,?,?,?,?,?)';
-        conn.query(consulta, [emp_cod_empleado,emp_nom_empleado, emp_id_empleado, emp_email_empleado, emp_estado_civil, emp_cod_estatus, emp_cod_cargo, emp_tipo_contrato, emp_usr_adicion, emp_usr_modificacion, des_cargo, estatus, des_tipo_contrato], (err, rows, fields) => {
+        const consulta  = 'call TRANSBARA.UPDATE_EMPLEADO(?,?,?,?,?,?,?,?,?,?)';
+        conn.query(consulta, [emp_cod_empleado,emp_nom_empleado, emp_id_empleado, emp_email_empleado, emp_estado_civil, emp_cod_estatus, emp_cod_cargo, emp_tipo_contrato, emp_usr_adicion, emp_usr_modificacion], (err, rows, fields) => {
             if (!err){
                 res.json({Status: 'COLABORADOR ACTUALIZADO...'});
             } else {

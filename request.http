@@ -1,3 +1,4 @@
+// --------- MÉTODOS DE EMPLEADOS -----------------------------------------------------
 ###
 GET http://localhost:3000/empleados HTTP/1.1
 
@@ -22,11 +23,64 @@ Content-Type: application/json
 }
 
 ###
+GET http://localhost:3000/empleados/obtener_empleado/2 HTTP/1.1
+
+###
 PUT http://localhost:3000/empleados/actualizar_empleado/2 HTTP/1.1
 Content-Type: application/json
 
 {
     
+    "emp_nom_empleado": "David Matute",
+    "emp_id_empleado": "22640",
+    "emp_email_empleado": "davidmatute@unah.hn",
+    "emp_estado_civil": "s",
+    "emp_cod_estatus": "1",
+    "emp_cod_cargo": "1",
+    "emp_tipo_contrato": "1",
+    "emp_usr_adicion": "Angela",
+    "emp_usr_modificacion": "Sayra"
+    
+}
+
+###
+DELETE http://localhost:3000/empleados/eliminar_empleado/2 HTTP/1.1
+
+// --------- MÉTODOS DE USUARIOS ------------------------------------------------------
+###
+GET http://localhost:3000/usuarios HTTP/1.1
+
+###
+GET http://localhost:3000/usuario/11 HTTP/1.1
+
+###
+PUT http://localhost:3000/actualizar_usuario/11 HTTP/1.1
+Content-Type: application/json
+
+{
+    "usr_password": "hola",
+    "usr_nom_usuario": "DavidMatute",
+    "usr_cod_empleado": 2,
+    "usr_cod_estatus": 2,
+    "usr_loguead": "s",
+    "usr_cod_tipo_usuario": 1,
+    "usr_usr_adicion": "sss",
+    "usr_usr_modificacion": "BBB"
+}
+
+###
+DELETE http://localhost:3000/eliminar_usuario/4 HTTP/1.1
+
+
+// --------- MÉTODOS DE PROVEEDORES -----------------------------------------------------
+###
+GET http://localhost:3000/proveedores HTTP/1.1
+
+###
+POST http://localhost:3000/proveedores/insertar_proveedor/ HTTP/1.1
+Content-Type: application/json
+
+{
     "emp_nom_empleado": "David Matute",
     "emp_id_empleado": "22640",
     "emp_email_empleado": "davidmatute@unah.hn",
@@ -43,26 +97,25 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/empleados/eliminar_empleado/2 HTTP/1.1
-
-// ------------------------------------------------------------------
-###
-GET http://localhost:3000/usuarios HTTP/1.1
+GET http://localhost:3000/proveedores/obtener_proveedor/2 HTTP/1.1
 
 ###
-GET http://localhost:3000/usuario/11 HTTP/1.1
-
-###
-PUT http://localhost:3000/actualizar_usuario/11 HTTP/1.1
-header name: header value
+PUT http://localhost:3000/proveedores/actualizar_proveedor/2 HTTP/1.1
+Content-Type: application/json
 
 {
-    "usr_password": "hola",
-    "usr_nom_usuario": "DavidMatute",
-    "usr_cod_empleado": 2,
-    "usr_cod_estatus": 2,
-    "usr_loguead": "s",
-    "usr_cod_tipo_usuario": 1,
-    "usr_usr_adicion": "sss",
-    "usr_usr_modificacion": "BBB"
+    
+    "prv_nom_proveedor": "David Matute",
+    "prv_id_proveedor": 2,
+    "prv_email_proveedor": "davidmatute@unah.com",
+    "prv_cod_estatus": 66,
+    "prv_cod_pais": 66,
+    "prv_usr_adicion": "FFF",
+    "prv_usr_modificacion": "FFF",
+    "prv_direccion_proveedores": "carrizal",
+    "prv_telefono_proveedores": 23233434
 }
+
+###
+DELETE http://localhost:3000/proveedores/eliminar_proveedor/9 HTTP/1.1
+

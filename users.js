@@ -118,7 +118,7 @@ app.put("/actualizar_usuario/:usr_cod_usuario", (req, res) => {
 });
 
 // ELIMINAR USUARIO CON EL MÉTODO DELETE
-app.get("/eliminar_usuario/:PV_usr_cod_usuario", (req, res) => {
+app.delete("/eliminar_usuario/:PV_usr_cod_usuario", (req, res) => {
     try {
         const {PV_usr_cod_usuario} = req.params;
         const consulta = 'call TRANSBARA.DELETE_USUARIO(?)';
