@@ -60,10 +60,10 @@ app.get("/usuarios", (req, res) => {
 // INSERTAR UN USUARIO CON EL MÉTODO "POST"
 app.post("/insertar_usuario/", (req, res) => {
     try{
-        const { usr_cod_usuario, usr_password, usr_nom_usuario, usr_cod_estatus, usr_loguead, usr_cod_tipo_usuario, usr_usr_adicion, usr_usr_modificacion } = req.params;
+        const { PV_usr_cod_usuario, PV_usr_password, PV_usr_nom_usuario, PI_usr_cod_estatus, PV_usr_loguead, PI_usr_cod_tipo_usuario, PV_usr_usr_adicion, PV_usr_usr_modificacion } = req.body;
         console.log(req.body);
         const consulta = 'call TRANSBARA.INSERT_USUARIO(?,?,?,?,?,?,?,?);';
-        conn.query(consulta,[usr_cod_usuario, usr_password, usr_nom_usuario, usr_cod_estatus, usr_loguead, usr_cod_tipo_usuario, usr_usr_adicion, usr_usr_modificacion], (err,rows,fields) => {
+        conn.query(consulta,[PV_usr_cod_usuario, PV_usr_password, PV_usr_nom_usuario, PI_usr_cod_estatus, PV_usr_loguead, PI_usr_cod_tipo_usuario, PV_usr_usr_adicion, PV_usr_usr_modificacion], (err,rows,fields) => {
             if (!err){
                 res.json({Status: 'USUARIO AGREGADO...'});
             } else {
@@ -103,8 +103,8 @@ app.put("/actualizar_usuario/:usr_cod_usuario", (req, res) => {
     try{
         const {usr_password, usr_nom_usuario, usr_cod_empleado,usr_cod_estatus,usr_loguead,usr_cod_tipo_usuario,usr_usr_adicion,usr_usr_modificacion } = req.body;
         const {usr_cod_usuario} = req.params;
-        const query  = 'call TRANSBARA.UPDATE_USUARIO(?,?,?,?,?,?,?,?,?)';
-        conn.query(query, [usr_cod_usuario,usr_password, usr_nom_usuario, usr_cod_empleado,usr_cod_estatus,usr_loguead,usr_cod_tipo_usuario,usr_usr_adicion,usr_usr_modificacion], (err, rows, fields) => {
+        const consulta  = 'call TRANSBARA.UPDATE_USUARIO(?,?,?,?,?,?,?,?,?)';
+        conn.query(consulta, [usr_cod_usuario,usr_password, usr_nom_usuario, usr_cod_empleado,usr_cod_estatus,usr_loguead,usr_cod_tipo_usuario,usr_usr_adicion,usr_usr_modificacion], (err, rows, fields) => {
             if (!err){
                 res.json({Status: 'USUARIO ACTUALIZADO...'});
             } else {

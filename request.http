@@ -51,15 +51,30 @@ DELETE http://localhost:3000/empleados/eliminar_empleado/2 HTTP/1.1
 GET http://localhost:3000/usuarios HTTP/1.1
 
 ###
+POST http://localhost:3000/insertar_usuario/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "PV_usr_cod_usuario": "34",
+    "PV_usr_password": "hola",
+    "PV_usr_nom_usuario": "DavidMatute",
+    "PI_usr_cod_estatus": 2,
+    "PV_usr_loguead": "s",
+    "PI_usr_cod_tipo_usuario": 1,
+    "PV_usr_usr_adicion": "sss",
+    "PV_usr_usr_modificacion": "BBB"
+}
+ 
+###
 GET http://localhost:3000/usuario/11 HTTP/1.1
 
 ###
-PUT http://localhost:3000/actualizar_usuario/11 HTTP/1.1
+PUT http://localhost:3000/actualizar_usuario/1 HTTP/1.1
 Content-Type: application/json
 
 {
     "usr_password": "hola",
-    "usr_nom_usuario": "DavidMatute",
+    "usr_nom_usuario": "Gracias Marys la queremos",
     "usr_cod_empleado": 2,
     "usr_cod_estatus": 2,
     "usr_loguead": "s",
@@ -112,7 +127,7 @@ Content-Type: application/json
     "prv_cod_pais": 66,
     "prv_usr_adicion": "FFF",
     "prv_usr_modificacion": "FFF",
-    "prv_direccion_proveedores": "carrizal",
+    "prv_direccion_proveedores": 2342,
     "prv_telefono_proveedores": 23233434
 }
 
