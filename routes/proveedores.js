@@ -37,24 +37,23 @@ routes_p.get('/', (req, res) => {
 });
 
 
-/*// INSERTAR UN PROVEEDOR CON EL MÉTODO "POST"
-routes.post("/insertar_proveedor/", (req, res) => {
+// INSERTAR UN PROVEEDOR CON EL MÉTODO "POST"
+routes_p.post("/insertar_proveedor/", (req, res) => {
     try{
-        const { emp_nom_empleado, emp_id_empleado, emp_email_empleado, emp_estado_civil, emp_cod_estatus, emp_cod_cargo, emp_tipo_contrato, emp_usr_adicion, emp_usr_modificacion, des_cargo, estatus, des_tipo_contrato } = req.params;
-        console.log(req.body);
-        const consulta = 'call TRANSBARA.INSERT_PROVEEDORES(?,?,?,?,?,?,?,?,?,?,?,?);';
-        conn.query(consulta, [emp_nom_empleado, emp_id_empleado, emp_email_empleado, emp_estado_civil, emp_cod_estatus, emp_cod_cargo, emp_tipo_contrato, emp_usr_adicion, emp_usr_modificacion, des_cargo, estatus, des_tipo_contrato], (err,rows,fields) => {
+        const { PV_prv_nom_proveedor, PI_prv_id_proveedor, PV_prv_email_proveedor, PI_cod_estatus, PI_prv_cod_pais, PV_prv_usr_adicion, PV_prv_usr_modificacion, PI_prv_direccion_proveedores, PI_cod_telefono_proveedor, PV_cod_direccion_proveedor, PV_des_direccion_proveedor, PI_num_telefono_proveedor } = req.body;
+        const consulta = 'call TRANSBARA.INSERT_PROVEEDORES(?,?,?,?,?,?,?,?,?,?,?,?)';
+        conn.query(consulta, [PV_prv_nom_proveedor,PI_prv_id_proveedor,PV_prv_email_proveedor,PI_cod_estatus,PI_prv_cod_pais,PV_prv_usr_adicion,PV_prv_usr_modificacion,PI_prv_direccion_proveedores,PI_cod_telefono_proveedor,PV_cod_direccion_proveedor,PV_des_direccion_proveedor,PI_num_telefono_proveedor], (err,rows,fields) => {
             if (!err){
                 res.json({Status: 'PROVEEDOR AGREGADO...'});
             } else {
-                console.log("No pudo insertar ningún PROVEEDOR");
+                console.log(err); //"No pudo insertar ningún PROVEEDOR");
             }
         });
     }catch (error) {
         console.log(error);
     }
 
-});*/
+});
 
 // OBTENER UN PROVEEDOR CON UN PARAMETRO EN ESPECÍFICO CON EL MÉTODO "GET"
 routes_p.get("/obtener_proveedor/:prv_cod_proveedor", (req, res) => {

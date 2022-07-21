@@ -39,10 +39,8 @@ routes.get('/', (req, res) => {
 // INSERTAR UN USUARIO CON EL MÉTODO "POST"
 routes.post("/insertar_empleado/", (req, res) => {
     try{
-        const { emp_nom_empleado, emp_id_empleado, emp_email_empleado, emp_estado_civil, emp_cod_estatus, emp_cod_cargo, emp_tipo_contrato, emp_usr_adicion, emp_usr_modificacion, des_cargo, estatus, des_tipo_contrato } = req.params;
-        console.log(req.body);
-        const consulta = 'call TRANSBARA.INSERT_EMPLEADO(?,?,?,?,?,?,?,?,?,?,?,?);';
-        conn.query(consulta, [emp_nom_empleado, emp_id_empleado, emp_email_empleado, emp_estado_civil, emp_cod_estatus, emp_cod_cargo, emp_tipo_contrato, emp_usr_adicion, emp_usr_modificacion, des_cargo, estatus, des_tipo_contrato], (err,rows,fields) => {
+        const { PV_emp_nom_empleado, PI_emp_id_empleado, PV_emp_email_empleado, PC_emp_estado_civil, PI_emp_cod_estatus, PI_emp_cod_cargo, PI_emp_tipo_contrato, PV_emp_usr_adicion, PV_emp_usr_modificacion } = req.body;        const consulta = 'call TRANSBARA.INSERT_EMPLEADO(?,?,?,?,?,?,?,?,?);';
+        conn.query(consulta, [PV_emp_nom_empleado, PI_emp_id_empleado, PV_emp_email_empleado, PC_emp_estado_civil, PI_emp_cod_estatus, PI_emp_cod_cargo, PI_emp_tipo_contrato, PV_emp_usr_adicion, PV_emp_usr_modificacion], (err,rows,fields) => {
             if (!err){
                 res.json({Status: 'COLABORADOR AGREGADO...'});
             } else {
