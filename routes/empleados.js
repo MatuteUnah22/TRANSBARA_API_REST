@@ -39,7 +39,8 @@ routes.get('/', (req, res) => {
 // INSERTAR UN USUARIO CON EL MÉTODO "POST"
 routes.post("/insertar_empleado/", (req, res) => {
     try{
-        const { PV_emp_nom_empleado, PI_emp_id_empleado, PV_emp_email_empleado, PC_emp_estado_civil, PI_emp_cod_estatus, PI_emp_cod_cargo, PI_emp_tipo_contrato, PV_emp_usr_adicion, PV_emp_usr_modificacion } = req.body;        const consulta = 'call TRANSBARA.INSERT_EMPLEADO(?,?,?,?,?,?,?,?,?);';
+        const { PV_emp_nom_empleado, PI_emp_id_empleado, PV_emp_email_empleado, PC_emp_estado_civil, PI_emp_cod_estatus, PI_emp_cod_cargo, PI_emp_tipo_contrato, PV_emp_usr_adicion, PV_emp_usr_modificacion } = req.body;
+        const consulta = 'call TRANSBARA.INSERT_EMPLEADO(?,?,?,?,?,?,?,?,?);';
         conn.query(consulta, [PV_emp_nom_empleado, PI_emp_id_empleado, PV_emp_email_empleado, PC_emp_estado_civil, PI_emp_cod_estatus, PI_emp_cod_cargo, PI_emp_tipo_contrato, PV_emp_usr_adicion, PV_emp_usr_modificacion], (err,rows,fields) => {
             if (!err){
                 res.json({Status: 'COLABORADOR AGREGADO...'});
@@ -97,11 +98,11 @@ routes.delete("/eliminar_empleado/:PI_emp_cod_empleado", (req, res) => {
         const consulta = 'call TRANSBARA.DELETE_EMPLEADO(?)';
         conn.query(consulta, [PI_emp_cod_empleado], (error, results) => {
             if (error) throw error;
-            res.send("Empleado eliminado...");
+            res.send({Status:"Empleado eliminado..."});
         });
 
     } catch (error) {
-        
+        console.log(error);
     }    
  
 });

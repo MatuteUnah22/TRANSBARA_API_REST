@@ -4,7 +4,8 @@ const conexion = require("mysql");
 require('dotenv').config();
 const routes = require('./routes/empleados');
 const routes_p = require('./routes/proveedores');
-
+const routes_c = require('./routes/clientes');
+const routes_ce = require('./routes/cargas_enviar');
 
 // constante para el paquete bodyparser
 const bp = require('body-parser');
@@ -42,7 +43,8 @@ app.get('/', (req, res) => {
 
 app.use('/empleados', routes);
 app.use('/proveedores', routes_p);
-
+app.use('/clientes', routes_c);
+app.use('/cargas_enviar', routes_ce);
 
 //EJECUTAMOS EL SERVER EN UN PUERTO ESPECFICO; PUERTO 3000 (ELSERVICIO NODEJS)
 app.listen(3000,()=> console.log('server running puerto: 3000'));

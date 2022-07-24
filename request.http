@@ -7,9 +7,9 @@ POST http://localhost:3000/empleados/insertar_empleado/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "PV_emp_nom_empleado": "David Theo",
+    "PV_emp_nom_empleado": "David Hernandez",
     "PI_emp_id_empleado": 22640,
-    "PV_emp_email_empleado": "matute@unah.hn",
+    "PV_emp_email_empleado": "dh@unah.hn",
     "PC_emp_estado_civil": "s",
     "PI_emp_cod_estatus": 1,
     "PI_emp_cod_cargo": 1,
@@ -20,15 +20,15 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/empleados/obtener_empleado/6 HTTP/1.1
+GET http://localhost:3000/empleados/obtener_empleado/8 HTTP/1.1
 
 ###
-PUT http://localhost:3000/empleados/actualizar_empleado/7 HTTP/1.1
+PUT http://localhost:3000/empleados/actualizar_empleado/8 HTTP/1.1
 Content-Type: application/json
 
 {
     
-    "emp_nom_empleado": "David Theo",
+    "emp_nom_empleado": "David Terstegen",
     "emp_id_empleado": "22640",
     "emp_email_empleado": "davidmatute@yahoo.com",
     "emp_estado_civil": "s",
@@ -41,7 +41,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/empleados/eliminar_empleado/7 HTTP/1.1
+DELETE http://localhost:3000/empleados/eliminar_empleado/8 HTTP/1.1
 
 // --------- MÉTODOS DE USUARIOS ------------------------------------------------------
 ###
@@ -52,36 +52,36 @@ POST http://localhost:3000/insertar_usuario/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "PV_usr_cod_usuario": "2",
-    "PV_usr_password": "hola",
-    "PV_usr_nom_usuario": "David Rosales",
+    "PV_usr_cod_usuario": "4",
+    "PV_usr_password": "futbol24",
+    "PV_usr_nom_usuario": "Daniela",
     "PI_usr_cod_estatus": 2,
     "PV_usr_loguead": "s",
     "PI_usr_cod_tipo_usuario": 1,
     "PV_usr_usr_adicion": "sss",
-    "PV_usr_usr_modificacion": "Gabriel"
+    "PV_usr_usr_modificacion": "Gabriela"
 }
  
 ###
-GET http://localhost:3000/usuario/11 HTTP/1.1
+GET http://localhost:3000/usuario/4 HTTP/1.1
 
 ###
-PUT http://localhost:3000/actualizar_usuario/1 HTTP/1.1
+PUT http://localhost:3000/actualizar_usuario/4 HTTP/1.1
 Content-Type: application/json
 
 {
-    "usr_password": "hola",
-    "usr_nom_usuario": "Gracias",
+    "usr_password": "password22",
+    "usr_nom_usuario": "Dennisse Valladares",
     "usr_cod_empleado": 2,
     "usr_cod_estatus": 2,
     "usr_loguead": "s",
     "usr_cod_tipo_usuario": 1,
-    "usr_usr_adicion": "sss",
-    "usr_usr_modificacion": "BBB"
+    "usr_usr_adicion": "sSs",
+    "usr_usr_modificacion": "David Matute"
 }
 
 ###
-DELETE http://localhost:3000/eliminar_usuario/4 HTTP/1.1
+DELETE http://localhost:3000/eliminar_usuario/34 HTTP/1.1
 
 
 // --------- MÉTODOS DE PROVEEDORES -----------------------------------------------------
@@ -95,18 +95,19 @@ Content-Type: application/json
 {
     "PV_prv_nom_proveedor": "Ingrid Molina",
     "PI_prv_id_proveedor": 23215487,
-    "PV_prv_email_proveedor": "JHH",
-    "PI_prv_cod_estatus": 66,
-    "PI_prv_cod_pais": 2,
+    "PV_prv_email_proveedor": "JHH@yahoo.com",
+    "PI_cod_estatus": 1,
+    "PI_prv_cod_pais": 1,
     "PV_prv_usr_adicion": "David Matute",
     "PV_prv_usr_modificacion": "FFF",
-    "PI_prv_direccion_proveedores": 2,
-    "PI_prv_telefono_proveedores": 2,
-    "PV_cod_direccion_proveedor" : "2",
+    "PV_prv_direccion_proveedor": 1,
+    "PI_prv_telefono_proveedores" : 21212121,
     "PV_des_direccion_proveedor" : "El Carrizal",
-    "PI_num_telefono_proveedor" : 21212121
+    "PI_num_telefono_proveedor" : 21212121,
+    "PV_nom_contacto": "IngridM" 
 
 }
+
 
 ###
 GET http://localhost:3000/proveedores/obtener_proveedor/2 HTTP/1.1
@@ -129,5 +130,91 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/proveedores/eliminar_proveedor/9 HTTP/1.1
+DELETE http://localhost:3000/proveedores/eliminar_proveedor/13 HTTP/1.1
 
+// --------- MÉTODOS DE CLIENTES -----------------------------------------------------
+
+###
+GET http://localhost:3000/clientes HTTP/1.1
+
+###
+POST http://localhost:3000/clientes/insertar_cliente/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "cli_cod_cliente": "",
+    "PV_cli_nom_cliente": "Dory",
+    "PV_cli_cod_tipo_persona": 1,
+    "PI_cli_id_rtn": 0801199946372,
+    "PI_cli_id_cliente": 111,
+    "PI_cli_cod_estatus": 1,
+    "PV_cli_email_cliente": "buscoYsemeolvida@pixar.com",
+    "PV_cli_cod_pais": 1,
+    "PV_cli_usr_adicion": "David Matute",
+    "PV_cli_usr_modificacion": "DM",
+    "PV_des_tipo_persona": "memoria a corto plazo"
+}
+
+###
+GET http://localhost:3000/clientes/obtener_cliente/9 HTTP/1.1
+
+###
+PUT http://localhost:3000/clientes/actualizar_cliente/2 HTTP/1.1
+Content-Type: application/json
+
+
+{
+    
+    "PV_cli_nom_cliente": "David",
+    "PV_cli_cod_tipo_persona": 4,
+    "PI_cli_id_rtn": 80767,
+    "PI_cli_id_cliente": 43498,
+    "PI_cli_cod_estatus": 1,
+    "PV_cli_email_cliente": "david@unah.hn",
+    "PV_cli_cod_pais": 1,
+    "PV_cli_usr_adicion": "Yo",
+    "PV_cli_usr_modificacion": "ju"   
+}
+
+###
+DELETE http://localhost:3000/clientes/eliminar_cliente/2 HTTP/1.1
+
+// --------- MÉTODOS DE CLIENTES -----------------------------------------------------
+
+###
+GET http://localhost:3000/cargas_enviar HTTP/1.1
+
+###
+POST http://localhost:3000/cargas_enviar/insertar_cargas_enviar/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "PD_Kg_Carga_Enviar": 12.5,
+    "PV_des_Carga_Enviar": "Churros Yummis",
+    "PI_can_Carga_Enviar": 12,    
+    "PI_cod_Carga_Futura": 2,
+    "PI_cod_Carga_Entregada": 6,
+    "PV_cenv_usr_adicion": "David Matute",
+    "PV_cenv_usr_modifico": "Theo Rosales"
+}
+
+###
+GET http://localhost:3000/cargas_enviar/obtener_carga_enviar/5 HTTP/1.1
+
+###
+PUT http://localhost:3000/cargas_enviar/actualizar_carga_enviar/5 HTTP/1.1
+Content-Type: application/json
+
+{
+    //"PI_cod_Carga_Enviar": 5,
+    "PD_Kg_Carga_Enviar": 2.9,
+    "PV_des_Carga_Enviar": "Boca Deli",
+    "PI_can_Carga_Enviar": 8,
+    "PI_cod_Carga_Futura": 2,
+    "PI_cod_Carga_Entregada": 6,
+    "PV_cenv_usr_adicion": "Darwin Valladares",
+    "PV_cenv_usr_modifico": "David Matute"
+}
+
+###
+DELETE http://localhost:3000/cargas_enviar/eliminar_carga_enviar/1 HTTP/1.1

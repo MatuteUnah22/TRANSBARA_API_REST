@@ -61,7 +61,6 @@ app.get("/usuarios", (req, res) => {
 app.post("/insertar_usuario/", (req, res) => {
     try{
         const { PV_usr_cod_usuario, PV_usr_password, PV_usr_nom_usuario, PI_usr_cod_estatus, PV_usr_loguead, PI_usr_cod_tipo_usuario, PV_usr_usr_adicion, PV_usr_usr_modificacion } = req.body;
-        console.log(req.body);
         const consulta = 'call TRANSBARA.INSERT_USUARIO(?,?,?,?,?,?,?,?);';
         conn.query(consulta,[PV_usr_cod_usuario, PV_usr_password, PV_usr_nom_usuario, PI_usr_cod_estatus, PV_usr_loguead, PI_usr_cod_tipo_usuario, PV_usr_usr_adicion, PV_usr_usr_modificacion], (err,rows,fields) => {
             if (!err){

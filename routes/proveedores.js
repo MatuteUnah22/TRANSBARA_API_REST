@@ -40,9 +40,9 @@ routes_p.get('/', (req, res) => {
 // INSERTAR UN PROVEEDOR CON EL MÉTODO "POST"
 routes_p.post("/insertar_proveedor/", (req, res) => {
     try{
-        const { PV_prv_nom_proveedor, PI_prv_id_proveedor, PV_prv_email_proveedor, PI_cod_estatus, PI_prv_cod_pais, PV_prv_usr_adicion, PV_prv_usr_modificacion, PI_prv_direccion_proveedores, PI_cod_telefono_proveedor, PV_cod_direccion_proveedor, PV_des_direccion_proveedor, PI_num_telefono_proveedor } = req.body;
+        const { PV_prv_nom_proveedor, PI_prv_id_proveedor, PV_prv_email_proveedor, PI_cod_estatus, PI_prv_cod_pais, PV_prv_usr_adicion, PV_prv_usr_modificacion, PV_prv_direccion_proveedor, PI_prv_telefono_proveedores, PV_des_direccion_proveedor, PI_num_telefono_proveedor, PV_nom_contacto } = req.body;
         const consulta = 'call TRANSBARA.INSERT_PROVEEDORES(?,?,?,?,?,?,?,?,?,?,?,?)';
-        conn.query(consulta, [PV_prv_nom_proveedor,PI_prv_id_proveedor,PV_prv_email_proveedor,PI_cod_estatus,PI_prv_cod_pais,PV_prv_usr_adicion,PV_prv_usr_modificacion,PI_prv_direccion_proveedores,PI_cod_telefono_proveedor,PV_cod_direccion_proveedor,PV_des_direccion_proveedor,PI_num_telefono_proveedor], (err,rows,fields) => {
+        conn.query(consulta, [PV_prv_nom_proveedor,PI_prv_id_proveedor,PV_prv_email_proveedor,PI_cod_estatus,PI_prv_cod_pais,PV_prv_usr_adicion,PV_prv_usr_modificacion,PV_prv_direccion_proveedor,PI_prv_telefono_proveedores,PV_des_direccion_proveedor,PI_num_telefono_proveedor,PV_nom_contacto], (err,rows,fields) => {
             if (!err){
                 res.json({Status: 'PROVEEDOR AGREGADO...'});
             } else {
@@ -92,18 +92,18 @@ routes_p.put("/actualizar_proveedor/:prv_cod_proveedor", (req, res) => {
 });
 
 // ELIMINAR USUARIO CON EL MÉTODO DELETE
-routes_p.delete("/eliminar_proveedor/:prv_cod_proveedor", (req, res) => {
+routes_p.delete("/eliminar_proveedor/:PI_prv_cod_proveedor", (req, res) => {
     try {
         
-        const {prv_cod_proveedor} = req.params;
+        const {PI_prv_cod_proveedor} = req.params;
         const consulta = 'call TRANSBARA.DELETE_PROVEEDORES(?)';
-        conn.query(consulta, [prv_cod_proveedor], (error, results) => {
+        conn.query(consulta, [PI_prv_cod_proveedor], (error, results) => {
             if (error) throw error;
-            res.send("PROVEEDOR ELIMINAR...");
+            res.send({Status:"PROVEEDOR ELIMINAdo..."});
         });
 
     } catch (error) {
-        
+        console.log(error);
     }  
 
 });
