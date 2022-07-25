@@ -55,16 +55,22 @@ routes_ce.post("/insertar_cargas_enviar/", (req, res) => {
 
 // OBTENER UN CARGAS A ENVIAR CON UN PARAMETRO EN ESPECÍFICO CON EL MÉTODO "GET"
 routes_ce.get("/obtener_carga_enviar/:PI_cod_Carga_Enviar", (req, res) => {
-    const {PI_cod_Carga_Enviar} = req.params;
-    const consulta = 'call TRANSBARA.SELECT_CARGA_ENVIAR(?)';
-    conn.query(consulta, [PI_cod_Carga_Enviar], (error, results) => {
-        if (error) throw error;
-        if (results.length > 0) {
-            res.json(results);
-        } else {
-            res.send("NO OBTUVO NINGÚN REGISTRO DE LA TABLA");
-        }
-    });
+    
+    try {
+        const {PI_cod_Carga_Enviar} = req.params;
+        const consulta = 'call TRANSBARA.SELECT_CARGA_ENVIAR(?)';
+        conn.query(consulta, [PI_cod_Carga_Enviar], (error, results) => {
+            if (error) throw error;
+            if (results.length > 0) {
+                res.json(results);
+            } else {
+                res.send("NO OBTUVO NINGÚN REGISTRO DE LA TABLA");
+            }
+        });
+        
+    } catch (error) {
+        console.log(error);        
+    }
 
 });
 

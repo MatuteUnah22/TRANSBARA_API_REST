@@ -179,7 +179,7 @@ Content-Type: application/json
 ###
 DELETE http://localhost:3000/clientes/eliminar_cliente/2 HTTP/1.1
 
-// --------- MÉTODOS DE CLIENTES -----------------------------------------------------
+// --------- MÉTODOS DE CARGAS A ENVIAR -----------------------------------------------------
 
 ###
 GET http://localhost:3000/cargas_enviar HTTP/1.1
@@ -218,3 +218,152 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:3000/cargas_enviar/eliminar_carga_enviar/1 HTTP/1.1
+
+// --------- MÉTODOS DE CARGAS ENTREGADAS ---------------------------------------------------
+
+###
+GET http://localhost:3000/carga_ent HTTP/1.1
+
+###
+POST http://localhost:3000/carga_ent/insertar_carga_ent/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "PI_cod_Carga_Enviar": 5,
+    "PV_des_Carga_Entregada": "",
+    "PV_cent_usr_adicion": "Sarutobi sensei",
+    "PV_cent_usr_modifico": "David"
+}
+
+###
+GET http://localhost:3000/carga_ent/obtener_carga_ent/5 HTTP/1.1
+
+###
+PUT http://localhost:3000/carga_ent/actualizar_carga_ent/7 HTTP/1.1
+Content-Type: application/json
+
+{
+    "PI_cod_Carga_Enviar": 5,
+    "PV_des_Carga_Entregada": "La Costeña",
+    "PV_cent_usr_adicion": "Dayana",
+    "PV_cent_usr_modifico": "David"
+}
+
+###
+DELETE http://localhost:3000/carga_ent/eliminar_carga_ent/6 HTTP/1.1
+
+// --------- MÉTODOS DE CARGOS -----------------------------------------------
+
+###
+
+GET http://localhost:3000/cargos HTTP/1.1
+
+###
+POST http://localhost:3000/cargos/insertar_cargo/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "PI_cod_cargo": 6,
+    "PV_des_cargo": "Gerente"
+}
+
+###
+GET http://localhost:3000/cargos/obtener_cargo/1 HTTP/1.1
+
+###
+PUT http://localhost:3000/cargos/actualizar_cargo/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "PI_cod_cargo": 1,
+    "PV_des_cargo": "Administrador"
+}
+
+###
+DELETE http://localhost:3000/cargos/eliminar_cargo/6 HTTP/1.1
+
+// --------- MÉTODOS DE ESTADOS -----------------------------------------------
+
+###
+GET http://localhost:3000/estados HTTP/1.1
+
+###
+POST http://localhost:3000/estados/insertar_estado/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "PI_cod_estatus": 8,
+    "PV_des_estatus": "Gee"
+}
+
+###
+GET http://localhost:3000/estados/obtener_estado/2 HTTP/1.1
+
+###
+PUT http://localhost:3000/estados/actualizar_estado/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "PI_cod_estatus": 2,
+    "PV_des_estatus": "Activo"
+}
+
+###
+DELETE http://localhost:3000/estados/eliminar_estado/5 HTTP/1.1
+
+// --------- MÉTODOS DE PAISES ---------------------------------------------------
+
+###
+GET http://localhost:3000/pais HTTP/1.1
+
+###
+POST http://localhost:3000/pais/insertar_pais/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "PI_cod_pais": 2,
+    "PV_nom_pais": "Brasil",
+    "PV_abr_pais": "BE"
+}
+
+###
+GET http://localhost:3000/pais/obtener_pais/2 HTTP/1.1
+
+###
+PUT http://localhost:3000/pais/actualizar_pais/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "PI_cod_pais": 2,
+    "PV_nom_pais": "Venezuela",
+    "PV_abr_pais": "VE"
+}
+
+###
+DELETE http://localhost:3000/pais/eliminar_pais/7 HTTP/1.1
+
+// --------- MÉTODOS DE TIPO DE CONTRATOS -----------------------------------------------
+
+###
+GET http://localhost:3000/tipo_contrato HTTP/1.1
+
+###
+POST http://localhost:3000/tipo_contrato/insertar_tipo_contrato/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "PI_cod_tipo_contrato": 3,
+    "PV_des_tipo_contrato": "Gee"
+}
+
+###
+GET http://localhost:3000/tipo_contrato/obtener_tipo_contrato/2 HTTP/1.1
+
+###
+PUT http://localhost:3000/tipo_contrato/actualizar_tipo_contrato/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "PI_cod_tipo_contrato": 1,
+    "PV_des_tipo_contrato": "Tiempo Completo"
+}

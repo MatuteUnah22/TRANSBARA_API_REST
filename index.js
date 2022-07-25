@@ -6,6 +6,11 @@ const routes = require('./routes/empleados');
 const routes_p = require('./routes/proveedores');
 const routes_c = require('./routes/clientes');
 const routes_ce = require('./routes/cargas_enviar');
+const routes_cent = require('./routes/carga_ent');
+const routes_ca = require('./routes/cargos');
+const routes_es = require('./routes/estados');
+const routes_pa = require('./routes/pais');
+const routes_tc = require('./routes/tipo_contrato');
 
 // constante para el paquete bodyparser
 const bp = require('body-parser');
@@ -45,6 +50,11 @@ app.use('/empleados', routes);
 app.use('/proveedores', routes_p);
 app.use('/clientes', routes_c);
 app.use('/cargas_enviar', routes_ce);
+app.use('/carga_ent', routes_cent);
+app.use('/cargos', routes_ca);
+app.use('/estados', routes_es);
+app.use('/pais', routes_pa);
+app.use('/tipo_contrato', routes_tc);
 
 //EJECUTAMOS EL SERVER EN UN PUERTO ESPECFICO; PUERTO 3000 (ELSERVICIO NODEJS)
 app.listen(3000,()=> console.log('server running puerto: 3000'));
