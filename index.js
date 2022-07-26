@@ -15,9 +15,6 @@ const routes_tc = require('./routes/tipo_contrato');
 const routes_u = require('./routes/usuarios');
 const routes_com = require('./routes/compras');
 const routes_rc = require('./routes/registro_compras');
-
-// constante para el paquete bodyparser
-const bp = require('body-parser');
 const routes_cp = require('./routes/compras_pendientes');
 const routes_ob = require('./routes/objetos');
 const routes_rg = require('./routes/reporte_general');
@@ -25,6 +22,14 @@ const routes_rh = require('./routes/reporte_historico');
 const routes_tcl = require('./routes/telefono_cliente');
 const routes_tem = require('./routes/telefono_empleado');
 const routes_tpr = require('./routes/telefono_proveedores');
+const routes_s = require('./routes/salario');
+const routes_ve = require('./routes/viajes_empleados');
+const routes_coda = require('./routes/cod_area');
+const routes_tp = require('./routes/tipo_empleados');
+
+// constante para el paquete bodyparser
+const bp = require('body-parser');
+
 
 //Conexion a la base de datos
 const conn = conexion.createConnection(
@@ -76,6 +81,10 @@ app.use('/reporte_historico', routes_rh);
 app.use('/telefono_cliente', routes_tcl);
 app.use('/telefono_empleado', routes_tem);
 app.use('/telefono_proveedores', routes_tpr);
+app.use('/salario', routes_s);
+app.use('/viajes_empleados', routes_ve);
+app.use('/cod_area', routes_coda);
+app.use('/tipo_empleados', routes_tp);
 
 //======= INICIO DE LA VERIFICACIÓN Y CREARCIÓN DEL TOKEN =======
 // LOGIN PARA OBTENER EL TOKEN
@@ -131,3 +140,4 @@ function verifyToken(req, res, next){
 app.listen(3000,()=> console.log('server running puerto: 3000'));
 
 module.exports = app;
+
