@@ -13,10 +13,18 @@ const routes_es = require('./routes/estados');
 const routes_pa = require('./routes/pais');
 const routes_tc = require('./routes/tipo_contrato');
 const routes_u = require('./routes/usuarios');
+const routes_com = require('./routes/compras');
+const routes_rc = require('./routes/registro_compras');
 
 // constante para el paquete bodyparser
 const bp = require('body-parser');
-const routes_us = require('./routes/usuarios');
+const routes_cp = require('./routes/compras_pendientes');
+const routes_ob = require('./routes/objetos');
+const routes_rg = require('./routes/reporte_general');
+const routes_rh = require('./routes/reporte_historico');
+const routes_tcl = require('./routes/telefono_cliente');
+const routes_tem = require('./routes/telefono_empleado');
+const routes_tpr = require('./routes/telefono_proveedores');
 
 //Conexion a la base de datos
 const conn = conexion.createConnection(
@@ -59,6 +67,15 @@ app.use('/estados', routes_es);
 app.use('/pais', routes_pa);
 app.use('/tipo_contrato', routes_tc);
 app.use('/usuarios', routes_u);
+app.use('/compras', routes_com);
+app.use('/registro_compras', routes_rc);
+app.use('/compras_pendientes', routes_cp);
+app.use('/objetos', routes_ob);
+app.use('/reporte_general', routes_rg);
+app.use('/reporte_historico', routes_rh);
+app.use('/telefono_cliente', routes_tcl);
+app.use('/telefono_empleado', routes_tem);
+app.use('/telefono_proveedores', routes_tpr);
 
 //======= INICIO DE LA VERIFICACIÓN Y CREARCIÓN DEL TOKEN =======
 // LOGIN PARA OBTENER EL TOKEN
