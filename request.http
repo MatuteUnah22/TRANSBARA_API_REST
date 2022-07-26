@@ -377,4 +377,4 @@ Content-Type: application/json
 ###
 POST http://localhost:3000/api/posts HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJub21icmUiOiJEYXZpZCIsImVtYWlsIjoibWF0dXRlQHVuYWguaG4ifSwiaWF0IjoxNjU4Nzk1Mjc1fQ.lH7iPcSFRzwMOnmZnTdqjsXrdIDE0o-pKoEt-8hwYJA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJub21icmUiOiJEYXZpZCIsImVtYWlsIjoibWF0dXRlQHVuYWguaG4ifSwiaWF0IjoxNjU4ODA2MzE4fQ.XB_sqx05hlfJjfB2_kNKEKzmjmW2FRnDH7UD0EVF218
