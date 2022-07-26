@@ -1,10 +1,7 @@
 const express = require('express');
-const app = express();
+const routes_u = express.Router();
 const conexion = require("mysql");
 require('dotenv').config();
-
-// constante para el paquete bodyparser
-const bp = require('body-parser');
 
 //Conexion a la base de datos
 const conn = conexion.createConnection(
@@ -18,28 +15,8 @@ const conn = conexion.createConnection(
     }
 );
 
-// test de conexion a bd
-conn.connect((err)=>{
-    if(!err) {
-       console.log('CONEXIÓN EXITOSA TRANS. BARAHONA MORAZÁN');
-    } else {
-       console.log('ERROR AL CONECTAR A LA BD');
-    }
-});
-
-app.get('/', (req, res) => {
-   res.send('API Rest del Módulo de  Persona - Usuarios');
-});
-
-//EJECUTAMOS EL SERVER EN UN PUERTO ESPECFICO; PUERTO 3000 (ELSERVICIO NODEJS)
-app.listen(3000,()=> console.log('server running puerto: 3000'));
-
-// enviando los datos JSON  a nodejs api
-app.use(bp.json());
-app.use(bp.urlencoded({extended: true}));
-
 // Obtener todos los usuarios
-app.get("/usuarios", (req, res) => {
+routes_u.get("/", (req, res) => {
     try {
         const consulta = 'call TRANSBARA.SELECT_TODOS_USUARIO';
         conn.query(consulta, (error, results) => {
@@ -58,7 +35,7 @@ app.get("/usuarios", (req, res) => {
 });
 
 // INSERTAR UN USUARIO CON EL MÉTODO "POST"
-app.post("/insertar_usuario/", (req, res) => {
+routes_u.post("/insertar_usuario/", (req, res) => {
     try{
         const { PV_usr_cod_usuario, PV_usr_password, PV_usr_nom_usuario, PI_usr_cod_estatus, PV_usr_loguead, PI_usr_cod_tipo_usuario, PV_usr_usr_adicion, PV_usr_usr_modificacion } = req.body;
         const consulta = 'call TRANSBARA.INSERT_USUARIO(?,?,?,?,?,?,?,?);';
@@ -76,7 +53,7 @@ app.post("/insertar_usuario/", (req, res) => {
 });
 
 // OBTENER UN USUARIO CON UN PARAMETRO EN ESPECÍFICO CON EL MÉTODO "GET"
-app.get("/usuario/:PI_usr_cod_usuario", (req, res) => {
+routes_u.get("/usuario/:PI_usr_cod_usuario", (req, res) => {
     try {
         
         const {PI_usr_cod_usuario} = req.params;
@@ -97,7 +74,7 @@ app.get("/usuario/:PI_usr_cod_usuario", (req, res) => {
 });
 
 // ACTUALIZAR USUARIO CON EL MÉTODO "PUT"
-app.put("/actualizar_usuario/:usr_cod_usuario", (req, res) => {
+routes_u.put("/actualizar_usuario/:usr_cod_usuario", (req, res) => {
    
     try{
         const {usr_password, usr_nom_usuario, usr_cod_empleado,usr_cod_estatus,usr_loguead,usr_cod_tipo_usuario,usr_usr_adicion,usr_usr_modificacion } = req.body;
@@ -117,7 +94,7 @@ app.put("/actualizar_usuario/:usr_cod_usuario", (req, res) => {
 });
 
 // ELIMINAR USUARIO CON EL MÉTODO DELETE
-app.delete("/eliminar_usuario/:PV_usr_cod_usuario", (req, res) => {
+routes_u.delete("/eliminar_usuario/:PV_usr_cod_usuario", (req, res) => {
     try {
         const {PV_usr_cod_usuario} = req.params;
         const consulta = 'call TRANSBARA.DELETE_USUARIO(?)';
@@ -132,4 +109,4 @@ app.delete("/eliminar_usuario/:PV_usr_cod_usuario", (req, res) => {
 
 });
 
-module.exports = app;
+module.exports = routes_u;

@@ -48,7 +48,7 @@ DELETE http://localhost:3000/empleados/eliminar_empleado/8 HTTP/1.1
 GET http://localhost:3000/usuarios HTTP/1.1
 
 ###
-POST http://localhost:3000/insertar_usuario/ HTTP/1.1
+POST http://localhost:3000/usuarios/insertar_usuario/ HTTP/1.1
 Content-Type: application/json
 
 {
@@ -63,10 +63,10 @@ Content-Type: application/json
 }
  
 ###
-GET http://localhost:3000/usuario/4 HTTP/1.1
+GET http://localhost:3000/usuarios/usuario/4 HTTP/1.1
 
 ###
-PUT http://localhost:3000/actualizar_usuario/4 HTTP/1.1
+PUT http://localhost:3000/usuarios/actualizar_usuario/4 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -81,7 +81,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/eliminar_usuario/34 HTTP/1.1
+DELETE http://localhost:3000/usuarios/eliminar_usuario/34 HTTP/1.1
 
 
 // --------- MÉTODOS DE PROVEEDORES -----------------------------------------------------

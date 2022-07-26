@@ -12,9 +12,11 @@ const routes_ca = require('./routes/cargos');
 const routes_es = require('./routes/estados');
 const routes_pa = require('./routes/pais');
 const routes_tc = require('./routes/tipo_contrato');
+const routes_u = require('./routes/usuarios');
 
 // constante para el paquete bodyparser
 const bp = require('body-parser');
+const routes_us = require('./routes/usuarios');
 
 //Conexion a la base de datos
 const conn = conexion.createConnection(
@@ -56,7 +58,7 @@ app.use('/cargos', routes_ca);
 app.use('/estados', routes_es);
 app.use('/pais', routes_pa);
 app.use('/tipo_contrato', routes_tc);
-
+app.use('/usuarios', routes_u);
 
 //======= INICIO DE LA VERIFICACIÓN Y CREARCIÓN DEL TOKEN =======
 // LOGIN PARA OBTENER EL TOKEN
