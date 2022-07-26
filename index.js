@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const conexion = require("mysql");
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const routes = require('./routes/empleados');
 const routes_p = require('./routes/proveedores');
@@ -56,54 +57,58 @@ app.use('/estados', routes_es);
 app.use('/pais', routes_pa);
 app.use('/tipo_contrato', routes_tc);
 
+
+//======= INICIO DE LA VERIFICACIÓN Y CREARCIÓN DEL TOKEN =======
+// LOGIN PARA OBTENER EL TOKEN
+app.post('/api/login', (req, res) => {
+    const user = {
+        id: 1,
+        nombre: "David",
+        email: "matute@unah.hn"
+    }
+
+    jwt.sign({user}, 'secretkey', (err, token) => {
+        res.json({
+            token
+        });
+    });
+    
+    //res.json(user);
+});
+
+app.post('/api/posts', verifyToken, (req, res) => {
+    
+    jwt.verify(req.token, 'secretkey', (err, authData) => {
+        if (err) {
+            sendStatus(403);
+        } else {
+            res.json({
+                mensaje: "Post fue creado",
+                authData
+            })
+        }
+    });
+    
+});
+
+// FUNCIÓN PARA LA VERIFICACIÓN DEL TOKEN "Authorization: Bearer <token>
+function verifyToken(req, res, next){
+    const bearerHeader = req.headers['authorization'];
+
+    if (typeof bearerHeader !== 'undefined') {
+        const bearerToken = bearerHeader.split(" ")[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        res.sendStatus(403);
+    }
+
+}
+
+//======= FIN DE LA VERIFICACIÓN Y CREARCIÓN DEL TOKEN =======
+
+
 //EJECUTAMOS EL SERVER EN UN PUERTO ESPECFICO; PUERTO 3000 (ELSERVICIO NODEJS)
 app.listen(3000,()=> console.log('server running puerto: 3000'));
 
 module.exports = app;
-/* -----------------------------------------------------------------------------
-// conexion bd
-
-// constante para el paquete de mysql
-const mysql = require ('mysql');
-
-
-// constante para el paquete express
-const express = require('express');
-
-// variable para los metodos express
-var app = express();
-
-// constante para el paquete bodyparser
-const bp = require('body-parser');
-
-// enviando los datos JSON  a nodejs api
-app.use(bp.json());
-
-// conectar a la bd mysql
- var mysqlconection = mysql.createConnection({
-     host:'142.44.161.115',
-     user:'TRANSBARA', 
-     password: 'Trans$$532',
-     datebase: 'TRANSBARA',
-     port: '3306',
-     multipleStatements: true // multipleStatements es para cuando estamos trabajando con transacciones en MySql
- });
- 
-
- // test de conexion a bd
- mysqlconection.connect((err)=>{
-     if(!err) {
-        console.log('CONEXION EXITOSA TRANS. BARAHONA MORAZAN');
-     } else {
-        console.log('ERROR AL CONECTAR A LA BD');
-
-     }
-
- });
-
- app.get('/', (req, res) => {
-    res.send('Módulo de Servicios');
-});
-
-//EJECUTAMOS EL SERVER EN UN PUERTO ESPECFICO; PUERTO 3000 (ELSERVICIO NODEJS)
-app.listen(3000,()=> console.log('server running puerto: 3000'));*/
