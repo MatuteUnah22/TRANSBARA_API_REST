@@ -153,4 +153,5 @@ function verifyToken(req, res, next){
 app.listen(3000,()=> console.log('server running puerto: 3000'));
 
 module.exports = app;
+module.exports = jwt;
 
